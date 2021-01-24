@@ -33,7 +33,7 @@ module.exports = {
 		}
 
 		if(!selectedFile){
-			return message.channel.send(`Jiggo kenne ich nicht ${message.author}`);
+			return message.channel.send(`Jiggo kenne ich nicht lo ${message.author}`);
 		}
 		let localFilePath = './audioFiles/'+selectedFile;
 		let absoluteFilePath = require("path").join(__dirname,localFilePath);
