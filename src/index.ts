@@ -1,6 +1,7 @@
 import * as fs from 'fs';
 import * as dotenv from "dotenv";
-import { Client, Events, GatewayIntentBits } from "discord.js";
+import { ChannelType, Client, Events, GatewayIntentBits, Guild } from "discord.js";
+import { joinVoiceChannel } from "@discordjs/voice";
 
 dotenv.config();
 
@@ -15,8 +16,34 @@ const client: Client = new Client({ intents: [GatewayIntentBits.Guilds] });
 //     client.commands.set(command.name, command);
 // }
 
-client.once(Events.ClientReady, c => {
+client.once(Events.ClientReady, async client => {
     console.log('Ready!');
+
+    var minSeconds: number = 600;
+    var maxSeconds: number = 5000;
+
+    const guild: Guild = client.guilds.cache.get(process.env.PRIMARY_GUILD!)!;
+
+    function loop() : void {
+        var intervalId = setTimeout(() => {
+            try {
+
+            var voiceChannels = guild.channels.cache.filter(c => c.type === ChannelType.GuildVoice);
+
+            const channel = joinVoiceChannel({
+                channelId: voiceChannels.random()!.id,
+                guildId: guild.id,		
+                adapterCreator: guild.voiceAdapterCreator
+            });
+                
+            } catch (error) {
+                console.error(error);
+            }
+            loop();
+        }, Math.floor(Math.random() * (maxSeconds - minSeconds) + minSeconds));
+
+    }
+
 
 });
 
