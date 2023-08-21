@@ -14,11 +14,11 @@ const player = createAudioPlayer();
 
 function playSong() {
 
-    const audioFiles = fs.readdirSync(path.resolve(process.cwd(), './audioFiles'));
+    const audioFiles = fs.readdirSync(path.resolve(process.cwd(), './audioFilesOpus'));
     // this file will be executed in the build folder
     var randomAudioFilePath = audioFiles[Math.floor(Math.random() * audioFiles.length)];
 
-    let fullPath = path.resolve( process.cwd(), 'audioFiles', randomAudioFilePath);
+    let fullPath = path.resolve( process.cwd(), 'audioFilesOpus', randomAudioFilePath);
     
 	const resource = createAudioResource(fullPath, {
 		inputType: StreamType.Arbitrary,
@@ -116,6 +116,9 @@ client.on('ready', async () => {
 				 */
 				connection.subscribe(player);
 				console.log('Playing now!');
+
+                
+
 	} catch (error) {
 		/**
 		 * The song isn't ready to play for some reason :(
