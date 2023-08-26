@@ -6,7 +6,7 @@ import path from 'path';
 
 dotenv.config();
 console.log(generateDependencyReport());
-console.log("Do it");
+console.log("Do it now");
 
 const player = createAudioPlayer();
 
