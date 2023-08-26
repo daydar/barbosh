@@ -37,7 +37,7 @@ jobs:
           username: ${{ secrets.HOST_USERNAME }}
           script: |
             pm2 delete all
-            cd /root/bot
+            cd /root/barbosh
             git pull
             npm install
             pm2 start npm --no-automation --name barbosh -- run start
