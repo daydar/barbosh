@@ -102,7 +102,7 @@ client.on('ready', async () => {
 				setTimeout(() => {
 					playSong();
 					console.log(`The time is ${Date.now()}`);
-				}, 10000);
+				}, 5000);
 			}
 		});
 
