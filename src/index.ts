@@ -13,10 +13,10 @@ const player = createAudioPlayer();
 
 function playSong() {
 
-    // this file will be executed in the build folder
-    const audioFiles = fs.readdirSync(path.resolve(process.cwd(), './audioFilesOpus'));
-    var randomAudioFilePath = audioFiles[Math.floor(Math.random() * audioFiles.length)];
-    let fullPath = path.resolve( process.cwd(), 'audioFilesOpus', randomAudioFilePath);
+	// this file will be executed in the build folder
+	const audioFiles = fs.readdirSync(path.resolve(process.cwd(), './audioFilesOpus'));
+	var randomAudioFilePath = audioFiles[Math.floor(Math.random() * audioFiles.length)];
+	let fullPath = path.resolve(process.cwd(), 'audioFilesOpus', randomAudioFilePath);
 	const resource = createAudioResource(fullPath, {
 		inputType: StreamType.OggOpus,
 	});
@@ -38,7 +38,7 @@ async function connectToChannel(channel: VoiceBasedChannel | GuildBasedChannel) 
 	const connection = joinVoiceChannel({
 		channelId: channel.id,
 		guildId: channel.guild.id,
-        adapterCreator: channel.guild.voiceAdapterCreator
+		adapterCreator: channel.guild.voiceAdapterCreator
 	});
 	/**
 	 * If we're dealing with a connection that isn't yet Ready, we can set a reasonable
@@ -69,43 +69,43 @@ async function connectToChannel(channel: VoiceBasedChannel | GuildBasedChannel) 
 }
 
 const client: Client = new Client({
-    intents: [GatewayIntentBits.Guilds,
-    GatewayIntentBits.GuildMessages,
-    GatewayIntentBits.GuildVoiceStates]
+	intents: [GatewayIntentBits.Guilds,
+	GatewayIntentBits.GuildMessages,
+	GatewayIntentBits.GuildVoiceStates]
 });
 
 client.on('ready', async () => {
 	console.log('Discord.js client is ready!');
 
-    const guild: Guild = client.guilds.cache.get(process.env.PRIMARY_GUILD!)!;
-    let voiceChannels = guild.channels.cache.filter(c => c.type === ChannelType.GuildVoice);
+	const guild: Guild = client.guilds.cache.get(process.env.PRIMARY_GUILD!)!;
+	let voiceChannels = guild.channels.cache.filter(c => c.type === ChannelType.GuildVoice);
 
 	/**
 	 * Try to get our song ready to play for when the bot joins a voice channel
 	 */
 	try {
 		console.log('Song is ready to play!');
-        let channel = voiceChannels.get("775744348331573322")!;
-        const connection = await connectToChannel(channel);
+		let channel = voiceChannels.get("775744348331573322")!;
+		const connection = await connectToChannel(channel);
 
-				/**
-				 * We have successfully connected! Now we can subscribe our connection to
-				 * the player. This means that the player will play audio in the user's
-				 * voice channel.
-				 */
-				connection.subscribe(player);
-				console.log('Playing now!');
+		/**
+		 * We have successfully connected! Now we can subscribe our connection to
+		 * the player. This means that the player will play audio in the user's
+		 * voice channel.
+		 */
+		connection.subscribe(player);
+		console.log('Playing now!');
 
-                player.on('stateChange', async (_, newState) => {
-                    if (newState.status === AudioPlayerStatus.Idle) {
-                      // Loop the audio with a delay using setTimeout
-                      setTimeout(() => {
-                        playSong();
-                      }, 10000);
-                    }
-                  });
-                
-                await playSong();
+		player.on('stateChange', async (_, newState) => {
+			if (newState.status === AudioPlayerStatus.Idle) {
+				// Loop the audio with a delay using setTimeout
+				setTimeout(() => {
+					playSong();
+				}, 10000);
+			}
+		});
+
+		await playSong();
 
 	} catch (error) {
 		/**
