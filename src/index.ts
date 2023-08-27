@@ -101,7 +101,7 @@ client.on('ready', async () => {
                       // Loop the audio with a delay using setTimeout
                       setTimeout(() => {
                         playSong();
-                      }, 5000);
+                      }, 10000);
                     }
                   });
                 
