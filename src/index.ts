@@ -101,6 +101,7 @@ client.on('ready', async () => {
 				// Loop the audio with a delay using setTimeout
 				setTimeout(() => {
 					playSong();
+					console.log(`The time is ${Date.now()}`);
 				}, 10000);
 			}
 		});
