@@ -9,7 +9,6 @@ console.log(generateDependencyReport());
 console.log("Do it now");
 
 const player = createAudioPlayer();
-const date: Date = new Date();
 
 function playSong() {
 
@@ -101,7 +100,7 @@ client.on('ready', async () => {
 				// Loop the audio with a delay using setTimeout
 				setTimeout(() => {
 					playSong();
-					console.log(`The time is ${date.toLocaleString(undefined, {timeStyle: "medium", dateStyle: "medium"})}`);
+					console.log(`The time is ${new Date().toLocaleString(undefined, {timeStyle: "medium", dateStyle: "medium"})}`);
 				}, 5000);
 			}
 		});
