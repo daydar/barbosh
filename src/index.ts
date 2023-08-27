@@ -101,7 +101,7 @@ client.on('ready', async () => {
 				// Loop the audio with a delay using setTimeout
 				setTimeout(() => {
 					playSong();
-					console.log(`The time is ${date.toLocaleDateString("de-DE")}`);
+					console.log(`The time is ${date.toLocaleDateString(undefined, {timeStyle: "medium", dateStyle: "medium"})}`);
 				}, 5000);
 			}
 		});
