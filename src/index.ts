@@ -136,7 +136,11 @@ client.on('voiceStateUpdate', (oldState, newState) => {
 	  console.log(`Client id: ${client.user?.id}`);
 
 	  for (let [k, v] of channel.members) {
-		console.log(`Key: ${k} Value: ${v}`)
+		console.log(`Key: ${k} Value: ${v}`);
+
+		if (client.user!.id == v.id) {
+			playSong();
+		}
 	  }
   
 	  
