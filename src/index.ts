@@ -133,6 +133,7 @@ client.on('voiceStateUpdate', (oldState, newState) => {
 	  const channel = newState.channel;
 
 	  console.log(`${user.tag} joined the voice channel ${channel.name}`);
+	  console.log(`Client id: ${client.user?.id}`);
 
 	  for (let [k, v] of channel.members) {
 		console.log(`Key: ${k} Value: ${v}`)
