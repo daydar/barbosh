@@ -101,7 +101,7 @@ client.on('ready', async () => {
 				setTimeout(() => {
 					playSong();
 					console.log(`The time is ${new Date().toLocaleString(undefined, {timeStyle: "medium", dateStyle: "medium"})}`);
-				}, 10000);
+				}, 45000);
 			}
 		});
 
