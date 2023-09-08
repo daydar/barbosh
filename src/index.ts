@@ -125,6 +125,25 @@ client.on('ready', async () => {
 });
 
 
+client.on('voiceStateUpdate', (oldState, newState) => {
+	// Check if someone has joined a voice channel
+	if (!oldState.channel && newState.channel) {
+	  // A user has joined a voice channel
+	  const user = newState.member!.user;
+	  const channel = newState.channel;
+
+	  console.log(`${user.tag} joined the voice channel ${channel.name}`);
+
+	  for (let [k, v] of channel.members) {
+		console.log(`Key: ${k} Value: ${v}`)
+	  }
+  
+	  
+	  // You can add your own logic here to perform actions when someone joins a voice channel.
+	}
+  });
+
+
 void client.login(process.env.DISCORD_TOKEN);
 
 
