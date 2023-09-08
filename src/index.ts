@@ -8,8 +8,14 @@ dotenv.config();
 console.log(generateDependencyReport());
 console.log("Do it now");
 
+const minRange = 10000;
+const maxRange = 60000;
 const player = createAudioPlayer();
 
+function getRandomInt(min: number, max: number): number {
+	return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+  
 function playSong() {
 
 	// this file will be executed in the build folder
@@ -98,10 +104,13 @@ client.on('ready', async () => {
 		player.on('stateChange', async (_, newState) => {
 			if (newState.status === AudioPlayerStatus.Idle) {
 				// Loop the audio with a delay using setTimeout
+
+				let randomDelay = getRandomInt(minRange, maxRange);
+
 				setTimeout(() => {
 					playSong();
 					console.log(`The time is ${new Date().toLocaleString(undefined, {timeStyle: "medium", dateStyle: "medium"})}`);
-				}, 45000);
+				}, randomDelay);
 			}
 		});
 
