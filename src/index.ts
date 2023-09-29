@@ -8,8 +8,8 @@ dotenv.config();
 console.log(generateDependencyReport());
 console.log("Do it now");
 
-const minRange = 10000;
-const maxRange = 50000;
+const minRange = 20000;
+const maxRange = 60000;
 const player = createAudioPlayer();
 
 function getRandomInt(min: number, max: number): number {
