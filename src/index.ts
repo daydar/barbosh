@@ -26,6 +26,7 @@ function playSong() {
 		inputType: StreamType.OggOpus,
 	});
 
+	console.log(`Audio file played: ${randomAudioFilePath}`);
 	player.play(resource);
 
 	/**
